@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+
+server.document-root = "{{ docroot | default('/var/www/html/') }}"
+server.port = {{ port | default(80) }}
+server.username = "{{ server_user | default('lighttpd') }}"
+server.groupname = "{{ group | default('lighttpd') }}"
+
+server.modules += (
+   "mod_cgi",
+   "mod_rewrite",
+)
+
+cgi.assign = ( ".cgi" => "" )
+cgi.execute-x-only = "enable"
+
+url.rewrite-once = ("/(\?.*)?$" => "quota.cgi$1")

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+lfs quota -g $1 /scratch |  grep scratch
+

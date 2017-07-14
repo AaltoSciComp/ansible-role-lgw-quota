@@ -1,0 +1,23 @@
+---
+- name: install lighttpd
+  yum: pkg=lighttpd  state=present
+
+- name: Copy lighttpd config
+  template: src=lighttpd.conf.j2 dest=/etc/lighttpd/lighttpd.conf
+             owner=root group=root mode=0644
+  notify: restart lighttpd
+
+- name: enable lighttpd
+  service: name=lighttpd enabled=yes
+
+#- name: Copy the lgw-quota php script
+#  copy: src=index.php dest=/var/www/html/index.php
+
+- name: Copy the lgw-quota cgi script
+  copy: src=quota.cgi dest=/var/www/html/quota.cgi mode=a+x
+
+- name: Copy sudoers rule
+  template: src=sudoers-lgw-quota.j2 dest=/etc/sudoers.d/lgw-quota
+             owner=root group=root mode=0440
+  notify: restart lighttpd
+
