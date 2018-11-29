@@ -13,4 +13,4 @@ server.modules += (
 cgi.assign = ( ".cgi" => "" )
 cgi.execute-x-only = "enable"
 
-url.rewrite-once = ("/(\?.*)?$" => "quota.cgi$1")
+url.rewrite-once = ("/(\?.*)?$" => "/quota.cgi$1")
