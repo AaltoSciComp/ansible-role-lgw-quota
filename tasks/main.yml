@@ -10,6 +10,9 @@
 - name: enable lighttpd
   service: name=lighttpd enabled=yes
 
+- name: Create www-data directory
+  file: path=/var/www/html/ state=directory mode=0755
+
 #- name: Copy the lgw-quota php script
 #  copy: src=index.php dest=/var/www/html/index.php
 
