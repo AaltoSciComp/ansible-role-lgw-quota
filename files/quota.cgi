@@ -14,4 +14,4 @@ if [ -z "$gid" -o "$gid" = 0  -o "$gid" = "root" ] ; then
 fi
 
 # this command must exactly match sudoers
-sudo /bin/lfs quota -g "$gid" /scratch 2>&1 | grep scratch
+sudo /bin/lfs quota -p "$gid" /scratch 2>&1 | grep scratch
